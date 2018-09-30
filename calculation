@@ -1,0 +1,41 @@
+
+     /*   //获取图片显示在ImageView后的宽高
+        Glide.with(activity)
+                .load(HttpUtils.HOST + HttpUtils.HTTPS_PORT + mGoodsLists.get(position).getImg())
+                .asBitmap()//强制Glide返回一个Bitmap对象
+                .listener(new RequestListener<String, Bitmap>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap bitmap, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        int imageHeight = bitmap.getHeight();
+                        int imageWidth = bitmap.getWidth();
+                        int itemWidth = (mSizeUtils.screenWidth() - DensityUtil.dp2px(10) - DensityUtil.dp2px(10)) / 2;
+
+                        if (itemWidth < imageWidth) {
+                            float scal=imageHeight/(float)itemWidth;
+
+                            mSizeUtils.setLayoutSizeWidht(holder.mUserImg, itemWidth);
+                            mSizeUtils.setLayoutHeight(holder.mUserImg, (int) (imageHeight / scal));
+
+                            Log.e("ChaoShowAdapterUser" + position, "scal:" + scal + "   " + "图片的宽:" + imageWidth + "  " + "item的宽:" + itemWidth
+                                    + "图片的高：" + imageHeight);
+
+                            Log.e("ChaoShowAdapterUser" + "高", imageHeight / scal + "");
+                            mSizeUtils.setLayoutHeight(holder.mContainer,(int)( imageHeight / scal)+DensityUtil.dp2px(40) );
+                        } else {
+                            float scal = itemWidth / imageWidth;
+
+                            mSizeUtils.setLayoutSizeWidht(holder.mUserImg, itemWidth);
+                            mSizeUtils.setLayoutHeight(holder.mUserImg, (int) (imageHeight * scal));
+
+                            mSizeUtils.setLayoutHeight(holder.mContainer,(int)( imageHeight * scal)+DensityUtil.dp2px(40) );
+                        }
+                        holder.mUserImg.setImageBitmap(bitmap);
+
+                        return false;
+                    }
+                }).into(holder.mUserImg);*/
